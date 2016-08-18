@@ -1,0 +1,73 @@
+﻿@model SequenceGenerator.ViewModel.SequenceViewModel
+
+@{
+    ViewBag.Title = "SequenceGenerator";
+}
+
+<h2 class="success">Sequence generator up to number @ViewBag.Number </h2>
+<br/>
+    <div class="container" >
+        <table class="table table-responsive table-bordered">
+            <tr class="success">
+                <td class="col-md-4 col-xs-6">
+                    All Numbers:
+                </td>
+                <td class="col-md-4 col-xs-6">
+                    @foreach (var allNumber in Model.AllNumbers)
+                    {
+                        @Html.DisplayFor(x => allNumber, "DisplayTemplate")
+                    }
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    Even Numbers:
+                </td>
+                <td>
+                    @foreach (var allNumber in Model.EvenNumbers)
+                    {
+                        @Html.DisplayFor(x => allNumber, "DisplayTemplate")
+                    }
+                </td>
+            </tr>
+
+            <tr class="success">
+                <td class="col-md-4 col-xs-6">
+                    Odd Numbers:
+                </td>
+                <td class="col-md-4 col-xs-6">
+                    @foreach (var allNumber in Model.OddNumbers)
+                    {
+                        @Html.DisplayFor(x => allNumber, "DisplayTemplate")
+                    }
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4 col-xs-6">
+                    Multiple to 3 and/or 5 Numbers:
+                </td>
+                <td class="col-md-4 col-xs-6">
+                    @foreach (var allNumber in Model.MultipleNumber)
+                    {
+                        @Html.DisplayFor(x => allNumber, "DisplayTemplate")
+                    }
+                </td>
+            </tr>
+
+            <tr class="success">
+                <td class="col-md-4 col-xs-6">
+                    Fibonacci Numbers:
+                </td>
+                <td class="col-md-4 col-xs-6">
+                    @foreach (var allNumber in Model.FibonacciNumber)
+                    {
+                        @Html.DisplayFor(x => allNumber, "DisplayTemplate")
+                    }
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    @Html.ActionLink("Back to HomePage", "Index", "Default", new {@class = "btn btn-success"})
