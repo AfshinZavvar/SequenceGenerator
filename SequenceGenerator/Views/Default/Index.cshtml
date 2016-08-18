@@ -8,18 +8,32 @@
     <br />
     <div class="alert alert-info alert-dismissible" role="alert" style="width: 60%">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <strong>Instruction:</strong> Enter a positive number between 1 and 20.Then press Generate button
+        <strong>Instruction:</strong> Enter a positive number between 1 and 250.Then press Generate button
     </div>
 <br/><br/>
           @using (Html.BeginForm("SequenceGenerator", "Default", FormMethod.Post))
           {
               @Html.AntiForgeryToken()
               <div class="form-group row">
-                  @Html.Label("num", "Enter Positive Number between 1 and 20:", new {@class = "text-primary"})
+                  @Html.Label("num", "Positive Number(1-250):", new {@class = "text-primary"})
 
-                  @Html.TextBox("num", null, new {placeholder = "Positive!", @class = "form-control", type = "Number", Min = 1, Max = 20, required = true})
-
-                  <br/>
-                  <button type="submit" class="btn btn-default btn-primary">Generate Sequence!</button>
+                  @Html.TextBox("num", null, new {placeholder = "Positive!", @class = "form-control", type = "Number", Min = 1,max=250, required = true})
               </div>
+              <div class="form-group row">
+
+                  @Html.Label("which", "Select a sequence type:", new {@class = "text-primary"})
+                  @Html.DropDownList("Which", new List<SelectListItem>
+                  {
+                      new SelectListItem {Text = "All Number", Value = "1"},
+                      new SelectListItem {Text = "Even Number", Value = "2"},
+                      new SelectListItem {Text = "Odd Number", Value = "3"},
+                      new SelectListItem {Text = "Multiple to 3,5 Number", Value = "4"},
+                      new SelectListItem {Text = "Fibonacci Number", Value = "5"}
+                  }, new {@class = "form-control"})
+
+              </div>
+
+              <br/>
+              <button type="submit" class="btn btn-default btn-primary">Generate Sequence!</button>
+
           }

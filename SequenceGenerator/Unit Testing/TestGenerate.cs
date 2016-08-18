@@ -25,18 +25,15 @@ namespace SequenceGenerator.Unit_Testing
         [Test]
         public void AllNumber_List_Should_Not_be_Null()
         {
-            Sequence = new GenerateAllNumbers(Number);
-            Result = Sequence.Generate();
+            List<string> Result = Factory.GetInstance((Classs.SeqType) SeqType.All, Number).Generate();
             Assert.That(Result, Is.All.Not.Null);
         }
 
         [Test]
         public void AllNumber_List_As_Expected()
         {
-            Sequence = new GenerateAllNumbers(Number);
-            Result = Sequence.Generate();
-
-            var expected = new List<string> {"1", "2", "3", "4", "5"};
+            List<string> Result = Factory.GetInstance((Classs.SeqType)SeqType.All, Number).Generate();
+            List<string> expected = new List<string> {"1", "2", "3", "4", "5"};
 
             CollectionAssert.AreEqual(expected, Result);
         }
@@ -44,10 +41,8 @@ namespace SequenceGenerator.Unit_Testing
         [Test]
         public void EvenNumber_List_As_Expected()
         {
-            Sequence = new GenerateEvenNumbers(Number);
-            Result = Sequence.Generate();
-
-            var expected = new List<string> { "2", "4", };
+            List<string> Result = Factory.GetInstance((Classs.SeqType)SeqType.Even, Number).Generate();
+            var expected = new List<string> {"2", "4",};
 
             CollectionAssert.AreEqual(expected, Result);
         }
@@ -55,10 +50,8 @@ namespace SequenceGenerator.Unit_Testing
         [Test]
         public void OddNumber_List_As_Expected()
         {
-            Sequence = new GenerateOddNumbers(Number);
-            Result = Sequence.Generate();
-
-            var expected = new List<string> { "1", "3","5" };
+            List<string> Result = Factory.GetInstance((Classs.SeqType)SeqType.Odd, Number).Generate();
+            var expected = new List<string> {"1", "3", "5"};
 
             CollectionAssert.AreEqual(expected, Result);
         }
@@ -66,8 +59,7 @@ namespace SequenceGenerator.Unit_Testing
         [Test]
         public void MultipeNumber_List_As_Expected()
         {
-            Sequence = new GenerateMultiple(Number);
-            Result = Sequence.Generate();
+            List<string> Result = Factory.GetInstance(SeqType.Mutiple, Number).Generate();
 
             var expected = new List<string> {"1", "2", "C", "4", "E"};
 
@@ -77,15 +69,11 @@ namespace SequenceGenerator.Unit_Testing
         [Test]
         public void Fibonacci_List_As_Expected()
         {
-            Sequence = new GenerateFibonacci(Number);
-            Result = Sequence.Generate();
+            List<string> Result = Factory.GetInstance((Classs.SeqType)SeqType.Fib, Number).Generate();
 
-            var expected = new List<string> { "1", "1", "2" ,"3","5","8"};
+            var expected = new List<string> {"0","1", "1", "2", "3"};
 
             CollectionAssert.AreEqual(expected, Result);
         }
-
-
-
     }
 }

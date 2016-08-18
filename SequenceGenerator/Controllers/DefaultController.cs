@@ -10,47 +10,45 @@ namespace SequenceGenerator.Controllers
 {
     public class DefaultController : Controller
     {
-        public List<string> Generate(ISequence sequence)
+       public ActionResult Index()
         {
-            return sequence.Generate();
-        }
-
-        public ActionResult Index()
-        {
-           return View("Index");
+            return View("Index");
 
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult SequenceGenerator(FormCollection form)
         {
             int number = 1;
-            
+            int which = 1;
 
-            if (!Int32.TryParse(form["num"], out number))
+            if (!Int32.TryParse(form["num"], out number) || (!Int32.TryParse(form["which"], out which)) ||
+                (number > 250) || (number < 1))
+            {
+                ViewBag.Error = "Number is not between 1 and 250";
+                return View("Error");
+            }
+
+            try
+            {
+                SequenceViewModel sv = new SequenceViewModel
+                {
+                    Number = number,
+                    NumbersList = Factory.GetInstance((SeqType) which, number).Generate()
+                };
+
+                return View(sv);
+            }
+            catch
             {
                 return View("Index");
             }
-
-            SequenceViewModel svm = new SequenceViewModel
-            {
-                AllNumbers = Generate(new GenerateAllNumbers(number)),
-                EvenNumbers = Generate(new GenerateEvenNumbers(number)),
-                OddNumbers = Generate(new GenerateOddNumbers(number)),
-                FibonacciNumber = Generate(new GenerateFibonacci(number)),
-                MultipleNumber = Generate(new GenerateMultiple(number))
-            };
-
-            ViewBag.Number = number;
-            return View(svm);
-
         }
 
         public ActionResult SequenceGenerator()
         {
             return View("Index");
         }
-
-
     }
 }

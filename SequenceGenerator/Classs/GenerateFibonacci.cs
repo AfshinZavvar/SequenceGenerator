@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace SequenceGenerator.Classs
 {
@@ -11,17 +12,26 @@ namespace SequenceGenerator.Classs
         {
             _number = number;
         }
+        public static IEnumerable<Int64> GetFibonacciSequence()
+        {
+            yield return 0;
+            yield return 1;
+
+            int previous = 0;
+            int current = 1;
+
+            while (true)
+            {
+                int next = previous + current;
+                previous = current;
+                current = next;
+                yield return next;
+            }
+        }
+
         public List<string> Generate()
         {
-            var result = new List<string>();
-            Func<int, int> fib = null;
-
-            fib = n => (n < 2) ? 1 : fib(n - 1) + fib(n - 2);
-
-            for (var i = 0; i <= _number; i++)
-                result.Add(fib(i).ToString());
-
-            return result;
+            return GetFibonacciSequence().Take(_number).Select(i => (i).ToString()).ToList();
         }
     }
 }

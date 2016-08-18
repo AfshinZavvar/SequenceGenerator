@@ -32,3 +32,4 @@ C:\Users\Afshin\Desktop\Samples\SequenceGenerator\SequenceGenerator\bin\System.W
 C:\Users\Afshin\Desktop\Samples\SequenceGenerator\SequenceGenerator\bin\System.Web.Mvc.xml
 C:\Users\Afshin\Desktop\Samples\SequenceGenerator\SequenceGenerator\obj\Debug\SequenceGenerator.dll
 C:\Users\Afshin\Desktop\Samples\SequenceGenerator\SequenceGenerator\obj\Debug\SequenceGenerator.pdb
+C:\Users\Afshin\Desktop\Samples\SequenceGenerator\SequenceGenerator\obj\Debug\SequenceGenerator.csprojResolveAssemblyReference.cache
