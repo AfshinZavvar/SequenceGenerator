@@ -42,7 +42,8 @@ namespace SequenceGenerator.Controllers
             }
             catch
             {
-                return View("Index");
+                ViewBag.Error = "Error in proccessing your request";
+                return View("Error");
             }
         }
 
