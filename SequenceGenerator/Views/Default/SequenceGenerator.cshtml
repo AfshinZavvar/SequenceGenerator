@@ -4,15 +4,16 @@
     ViewBag.Title = "SequenceGenerator";
 }
 
-<h2 class="success">Sequence generator 
+<h2 class="success">Sequence generator upto number @Html.DisplayFor(x => x.Number):
+
     </h2>
 <br/>
     <div class="container" >
         <table class="table table-responsive table-bordered">
             <tr class="success">
                 <td class="col-md-4 col-xs-6">
-                   Sequence:
-                </td>
+                    Sequence (@Html.DisplayFor(x=>x.SequenceName)):
+                    </td>
                 <td class="col-md-4 col-xs-6">
                     @foreach (var allNumber in Model.NumbersList)
                     {

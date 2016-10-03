@@ -34,7 +34,7 @@ namespace SequenceGenerator.Unit_Testing
         public void Get_SequenceGenerator_View_Name_Is_Index()
         {
             var obj = new DefaultController();
-            var actResult = obj.SequenceGenerator() as ViewResult;
+            var actResult = (ViewResult) obj.SequenceGenerator();
             Assert.That(actResult.ViewName, Is.EqualTo("Index"));
         }
 
@@ -60,7 +60,7 @@ namespace SequenceGenerator.Unit_Testing
         public void Index_View_Is_Not_Null()
         {
             var obj = new DefaultController();
-            var actResult = obj.Index() as ViewResult;
+            var actResult = (ViewResult)obj.Index() ;
             Assert.That(actResult, Is.Not.Null);
         }
 
@@ -68,7 +68,7 @@ namespace SequenceGenerator.Unit_Testing
         public void Index_View_Name_Is_Index()
         {
             var obj = new DefaultController();
-            var actResult = obj.Index() as ViewResult;
+            var actResult = (ViewResult)obj.Index();
             Assert.That(actResult.ViewName, Is.EqualTo("Index"));
         }
 

@@ -12,7 +12,7 @@ namespace SequenceGenerator.Classs
         {
             _number = number;
         }
-        public static IEnumerable<Int64> GetFibonacciSequence()
+        private  IEnumerable<Int64> GetFibonacciSequence()
         {
             yield return 0;
             yield return 1;
@@ -32,6 +32,19 @@ namespace SequenceGenerator.Classs
         public List<string> Generate()
         {
             return GetFibonacciSequence().Take(_number).Select(i => (i).ToString()).ToList();
+        }
+
+
+
+        public string kill(string input)
+        {
+            string[] blacklist = {";", "--", "'"};
+
+            foreach (String item in blacklist)
+            {
+                input = input.Replace(item, string.Empty);
+            }
+            return input;
         }
     }
 }

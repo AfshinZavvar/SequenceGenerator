@@ -104,7 +104,10 @@
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="test.html" />
     <Content Include="Views\Default\Error.cshtml" />
     <None Include="Views\Shared\DisplayTemplates\DisplayTemplate.cshtml" />
     <Content Include="Web.config" />
@@ -112,7 +115,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Classs\GenerateMultiple.cs" />
-    <Compile Include="Classs\Repository.cs" />
+    <Compile Include="Classs\Factory.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -123,9 +126,8 @@
     <Compile Include="Classs\GenerateOddNumbers.cs" />
     <Compile Include="Classs\ISequence.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Unit Testing\ControllerTest.cs" />
-    <Compile Include="Unit Testing\TestGenerate.cs" />
-    <Compile Include="ViewModel\SequenceViewModel.cs" />
+    <Compile Include="Views\ViewModel\InputViewModel.cs" />
+    <Compile Include="Views\ViewModel\SequenceViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -148,6 +150,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+    <Folder Include="Unit Testing\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+    <script src="https://code.angularjs.org/1.5.8/angular-route.min.js"></script>
+    <title></title>
+    <meta charset="utf-8" />
+</head>
+<body ng-app="myapp">
+
+<div ng-controller="myctrl">
+
+    <p>
+        <a href="#/">Main</a>
+    </p>
+
+    <a href="#red">Red</a>
+    <a href="#green">Green</a>
+    <a href="#blue">Blue</a>
+
+    <div ng-view></div>
+
+    <ul>
+        <li ng-repeat="user in users" >
+            {{user }}
+            <img src="{{user.avatar_url}}" width="100px"/>
+        </li>
+    </ul>
+
+</div>
+
+<script>
+    var app = angular.module("myapp", ["ngRoute"]);
+
+    app.controller("myctrl", function($scope, $http) {
+        $http.get("Default/Test").then(function(response) {
+            $scope.users = response.data;
+        });
+    });
+
+    app.config(function($routeProvider) {
+        $routeProvider
+            .when("/", { return: "/" })
+            .when("/red", { return: "red" });
+    });
+</script>
+</body>
+</html>

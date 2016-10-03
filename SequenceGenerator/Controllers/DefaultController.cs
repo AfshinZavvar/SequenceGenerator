@@ -10,46 +10,44 @@ namespace SequenceGenerator.Controllers
 {
     public class DefaultController : Controller
     {
-       public ActionResult Index()
+        public ActionResult Index()
         {
-            return View("Index");
+            InputViewModel input=new InputViewModel();
+            return View(input);
 
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult SequenceGenerator(FormCollection form)
+        public ActionResult SequenceGenerator(InputViewModel form)
+
         {
-            int number = 1;
-            int which = 1;
-
-            if (!Int32.TryParse(form["num"], out number) || (!Int32.TryParse(form["which"], out which)) ||
-                (number > 250) || (number < 1))
+            if (!ModelState.IsValid)
             {
-                ViewBag.Error = "Number is not between 1 and 250";
-                return View("Error");
+                InputViewModel input = new InputViewModel();
+                return View("Index",input);
             }
-
-            try
+            SequenceViewModel sv = new SequenceViewModel
             {
-                SequenceViewModel sv = new SequenceViewModel
-                {
-                    Number = number,
-                    NumbersList = Factory.GetInstance((SeqType) which, number).Generate()
-                };
+                Number = form.Number,
+                SequenceName = form.SequenceList[form.SelectedSequenceId],
+                NumbersList = Factory.GetInstance((SeqType) form.SelectedSequenceId, form.Number).Generate()
 
-                return View(sv);
-            }
-            catch
-            {
-                ViewBag.Error = "Error in proccessing your request";
-                return View("Error");
-            }
+            };
+
+            return View(sv);
         }
 
         public ActionResult SequenceGenerator()
         {
             return View("Index");
         }
+
+        public JsonResult Test()
+        {
+            List<string> temp = new List<string>() {"afshin", "afsoon", "habib"};
+            return Json(temp, JsonRequestBehavior.AllowGet);
+        }
+
     }
 }
